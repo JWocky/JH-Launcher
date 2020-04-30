@@ -23,6 +23,7 @@ public class Configuration {
 		dir=new DirectoryEntry();
 		dir.setPath("/home/peter/fgdata/fgdata/Aircraft");
 		aircraftDirectories.add(dir);
+		dir=new DirectoryEntry();
 		dir.setPath("/home/peter/fgdata/terraGit");
 		terrainDirectories.add(dir);
 		aiTraffic=false;
@@ -40,6 +41,14 @@ public class Configuration {
 
 	public JFrame getMainWindow() {
 		return(mainwindow);
+	}
+
+	public LinkedList<DirectoryEntry> getAircraftDirectories() {
+		return(aircraftDirectories);
+	}
+
+	public void setAircraftDirectories(LinkedList<DirectoryEntry> l) {
+		aircraftDirectories=l;
 	}
 
 }

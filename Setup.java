@@ -9,7 +9,7 @@ public class Setup {
 	}
 
 	public boolean checkSetup() {
-		// Here I need still a chekc whether all the data entered is complete and correct to start Flightgear with it.
+		// Here I need still a check whether all the data entered is complete and correct to start Flightgear with it.
 		return(true);
 	}
 

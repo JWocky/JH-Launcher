@@ -10,4 +10,8 @@ public class DirectoryEntry {
 		return(path);
 	}
 
+	public String toString() {
+		return(path);
+	}
+
 }

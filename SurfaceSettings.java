@@ -1,35 +1,24 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class Surface extends JPanel{
+public class SurfaceSettings extends JPanel{
 	private Configuration config=null;
 	private Setup setup=null;
 	private JFrame win=null;
 
 	private Font fntTabbed=new Font("Courier", Font.PLAIN,20);
 
-	private AircraftSelect aircraftSelect=null;
+	private AircraftDirectorySelect aircraftDirectorySelect=null;
 	private StartFlightgear startFlightgear=null;
 
 	private JTabbedPane tabbed=new JTabbedPane(JTabbedPane.LEFT);
 
-	public Surface(Configuration c, Setup s) {
+	public SurfaceSettings(Configuration c, Setup s) {
 		config=c;
 		setup=s;
 		win=config.getMainWindow();
 
-		aircraftSelect=new AircraftSelect(config);
-		startFlightgear=new StartFlightgear(config, setup);
-
-		SpringLayout layout=new SpringLayout();
-		win.setLayout(layout);
-
-		win.getContentPane().add(this);
-
-		layout.putConstraint(SpringLayout.NORTH, this, 1, SpringLayout.NORTH, win.getContentPane()); 
-		layout.putConstraint(SpringLayout.WEST, this, 1, SpringLayout.WEST, win.getContentPane()); 
-		layout.putConstraint(SpringLayout.SOUTH, this, -1, SpringLayout.SOUTH, win.getContentPane()); 
-		layout.putConstraint(SpringLayout.EAST, this, -1, SpringLayout.EAST, win.getContentPane()); 
+		aircraftDirectorySelect=new AircraftDirectorySelect(config);
 
 		SpringLayout layout1=new SpringLayout();
 		setLayout(layout1);
@@ -48,13 +37,13 @@ test3.setBackground(Color.GREEN);
 JPanel test4=new JPanel();
 test4.setBackground(Color.CYAN);
 
-		tabbed.addTab("Select Aircraft", aircraftSelect);
-		tabbed.addTab("Select Airport", test2);
-		tabbed.addTab("Protocols", test3);
-		tabbed.addTab("JAFVA", test4);
-		tabbed.addTab("Start FlightGear", startFlightgear);
+		tabbed.addTab("Aircraft Directories", aircraftDirectorySelect);
+		tabbed.addTab("Terrain Directories", test2);
+		tabbed.addTab("Default Protocols", test3);
+		tabbed.addTab("JAFVA Position", test4);
+	}
 
-		win.pack();
+	public void activate() {
 	}
 
 }
