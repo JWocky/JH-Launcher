@@ -51,4 +51,20 @@ public class Configuration {
 		aircraftDirectories=l;
 	}
 
+	public LinkedList<DirectoryEntry> getTerrainDirectories() {
+		return(terrainDirectories);
+	}
+
+	public void setTerrainDirectories(LinkedList<DirectoryEntry> l) {
+		terrainDirectories=l;
+	}
+
+	public LinkedList<ProtocolEntry> getProtocols() {
+		return(protocolInterfaces);
+	}
+
+	public void setProtocols(LinkedList<ProtocolEntry> l) {
+		protocolInterfaces=l;
+	}
+
 }

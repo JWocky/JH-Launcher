@@ -10,4 +10,8 @@ public class ProtocolEntry {
 		return(parameters);
 	}
 
+	public String toString() {
+		return(parameters);
+	}
+
 }
