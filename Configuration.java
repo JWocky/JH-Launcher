@@ -11,6 +11,8 @@ public class Configuration {
 	private LinkedList<ProtocolEntry> protocolInterfaces=new LinkedList<ProtocolEntry>();
 	private AircraftEntry aircraft=null;
 	private AirportEntry airport=null;
+	private boolean isJAFVA=true;
+	private String jafvaName="JWocky";
 
 	public Configuration(JFrame f) {
 		mainwindow=f;
@@ -65,6 +67,22 @@ public class Configuration {
 
 	public void setProtocols(LinkedList<ProtocolEntry> l) {
 		protocolInterfaces=l;
+	}
+
+	public void setJafva(boolean b) {
+		isJAFVA=b;
+	}
+
+	public boolean getJafva() {
+		return(isJAFVA);
+	}
+
+	public void setJafvaName(String s) {
+		jafvaName=s;
+	}
+
+	public String getJafvaName() {
+		return(jafvaName);
 	}
 
 }

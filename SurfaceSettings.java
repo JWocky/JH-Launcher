@@ -11,7 +11,7 @@ public class SurfaceSettings extends JPanel{
 	private AircraftDirectorySelect aircraftDirectorySelect=null;
 	private TerrainDirectorySelect terrainDirectorySelect=null;
 	private DefaultProtocolSelect defaultProtocolSelect=null;
-	private StartFlightgear startFlightgear=null;
+	private DefaultJAFVASelect defaultJAFVASelect=null;
 
 	private JTabbedPane tabbed=new JTabbedPane(JTabbedPane.LEFT);
 
@@ -23,6 +23,7 @@ public class SurfaceSettings extends JPanel{
 		aircraftDirectorySelect=new AircraftDirectorySelect(config);
 		terrainDirectorySelect=new TerrainDirectorySelect(config);
 		defaultProtocolSelect=new DefaultProtocolSelect(config);
+		defaultJAFVASelect=new DefaultJAFVASelect(config);
 
 		SpringLayout layout1=new SpringLayout();
 		setLayout(layout1);
@@ -34,13 +35,10 @@ public class SurfaceSettings extends JPanel{
 		layout1.putConstraint(SpringLayout.SOUTH, tabbed, -1, SpringLayout.SOUTH, this); 
 		layout1.putConstraint(SpringLayout.EAST, tabbed, -1, SpringLayout.EAST, this); 
 
-JPanel test4=new JPanel();
-test4.setBackground(Color.CYAN);
-
 		tabbed.addTab("Aircraft Directories", aircraftDirectorySelect);
 		tabbed.addTab("Terrain Directories", terrainDirectorySelect);
 		tabbed.addTab("Default Protocols", defaultProtocolSelect);
-		tabbed.addTab("JAFVA Position", test4);
+		tabbed.addTab("JAFVA", defaultJAFVASelect);
 	}
 
 	public void activate() {
