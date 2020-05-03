@@ -77,7 +77,8 @@ public class AircraftDirectorySelect extends JPanel implements ActionListener, L
 		buffer=config.getAircraftDirectories();
 		for (int i=0; i<buffer.size(); i++) {
 			dlmDirectories.addElement(buffer.get(i));
-		}		
+		}
+		config.setAircraftDirty();
 	}
 
 	private void setButtons() {

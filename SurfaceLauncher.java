@@ -1,7 +1,9 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.*;
 
-public class SurfaceLauncher extends JPanel{
+public class SurfaceLauncher extends JPanel {
 	private Configuration config=null;
 	private Setup setup=null;
 	private JFrame win=null;

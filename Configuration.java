@@ -14,6 +14,9 @@ public class Configuration {
 	private boolean isJAFVA=true;
 	private String jafvaName="JWocky";
 
+	private AircraftSelect aircraftSelect=null;
+	private boolean aircraftTreeClean=false;
+
 	public Configuration(JFrame f) {
 		mainwindow=f;
 		// just some data for test purposes till I figure out where and how I want to store a configuration permanently
@@ -25,6 +28,11 @@ public class Configuration {
 		dir=new DirectoryEntry();
 		dir.setPath("/home/peter/fgdata/fgdata/Aircraft");
 		aircraftDirectories.add(dir);
+
+		dir=new DirectoryEntry();
+		dir.setPath("/home/peter/fgdata/fgdata/Blah");
+		aircraftDirectories.add(dir);
+
 		dir=new DirectoryEntry();
 		dir.setPath("/home/peter/fgdata/terraGit");
 		terrainDirectories.add(dir);
@@ -83,6 +91,23 @@ public class Configuration {
 
 	public String getJafvaName() {
 		return(jafvaName);
+	}
+
+	public void setAircraftSelect(AircraftSelect as) {
+		aircraftSelect=as;
+	}
+
+	public boolean isAircraftClean() {
+		return(aircraftTreeClean);
+	}
+
+	public void setAircraftClean() {
+		aircraftTreeClean=true;
+	}
+
+	public void setAircraftDirty() {
+		aircraftTreeClean=false;
+		aircraftSelect.reloadTree();
 	}
 
 }
