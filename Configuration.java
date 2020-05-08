@@ -16,6 +16,8 @@ public class Configuration {
 
 	private AircraftSelect aircraftSelect=null;
 	private boolean aircraftTreeClean=false;
+	private AirportSelect airportSelect=null;
+	private boolean airportListClean=false;
 
 	public Configuration(JFrame f) {
 		mainwindow=f;
@@ -108,6 +110,23 @@ public class Configuration {
 	public void setAircraftDirty() {
 		aircraftTreeClean=false;
 		aircraftSelect.reloadTree();
+	}
+
+	public void setAirportSelect(AirportSelect as) {
+		airportSelect=as;
+	}
+
+	public boolean isAirportClean() {
+		return(airportListClean);
+	}
+
+	public void setAirportClean() {
+		airportListClean=true;
+	}
+
+	public void setAirportDirty() {
+		airportListClean=false;
+		airportSelect.reloadList();
 	}
 
 }
