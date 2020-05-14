@@ -18,6 +18,8 @@ public class Configuration {
 	private boolean aircraftTreeClean=false;
 	private AirportSelect airportSelect=null;
 	private boolean airportListClean=false;
+	private ProtocolSelect protocolSelect=null;
+	private boolean protocolListClean=false;
 
 	public Configuration(JFrame f) {
 		mainwindow=f;
@@ -127,6 +129,23 @@ public class Configuration {
 	public void setAirportDirty() {
 		airportListClean=false;
 		airportSelect.reloadList();
+	}
+
+	public void setProtocolSelect(ProtocolSelect ps) {
+		protocolSelect=ps;
+	}
+
+	public boolean isProtocolsClean() {
+		return(protocolListClean);
+	}
+
+	public void setProtocolsClean() {
+		protocolListClean=true;
+	}
+
+	public void setProtocolsDirty() {
+		protocolListClean=false;
+		protocolSelect.reloadList();
 	}
 
 }
