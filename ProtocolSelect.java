@@ -80,6 +80,11 @@ public class ProtocolSelect extends JPanel implements TableModelListener {
 		columnModel.getColumn(0).setPreferredWidth(100);
 		columnModel.getColumn(1).setPreferredWidth(300);
 		columnModel.getColumn(2).setPreferredWidth(1000);
+
+		DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+		leftRenderer.setHorizontalAlignment(JLabel.LEFT);
+		result.getColumnModel().getColumn(2).setCellRenderer(leftRenderer);
+
 		result.setFont(fntPanel);
 		dtmResult.addTableModelListener(this);
 		config.setProtocolsClean();
@@ -87,21 +92,15 @@ public class ProtocolSelect extends JPanel implements TableModelListener {
 	}
 
 	public void reloadList() {
-//		treAirports.removeAll();
-//		LinkedList<DirectoryEntry> buffer=config.getTerrainDirectories();
-//		DefaultMutableTreeNode root=new DefaultMutableTreeNode("Airports");
-//		for (int i=0; i<buffer.size(); i++) {
-//			String airportsDir=buffer.get(i).getPath()+File.separator+"Airports";
-//			DefaultMutableTreeNode direc=new DefaultMutableTreeNode(buffer.get(i).getPath());
-//			File folder=new File(airportsDir);
-//			if (folder.exists()) {
-//				readPartTree(root, airportsDir);
-//			}
-//		}
-//		DefaultTreeModel treemod=(DefaultTreeModel)treAirports.getModel();
-//		treemod.setRoot(root);
-//		config.setAirportClean();
-//		scrAirports.validate();
+		DefaultTableModel dtm=(DefaultTableModel)tblProtocols.getModel();
+		dtm.getDataVector().removeAllElements();
+		LinkedList<ProtocolEntry> buffer=config.getProtocols();
+		for (int i=0; i<buffer.size(); i++) {
+			Object[] row={Boolean.valueOf(buffer.get(i).getSelected()), "", buffer.get(i).toString()};
+			dtm.addRow(row);
+		}
+		config.setProtocolsClean();
+		scrProtocols.validate();
 	}
 
 	public void tableChanged(TableModelEvent tme) {
