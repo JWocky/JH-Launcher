@@ -20,6 +20,8 @@ public class Configuration {
 	private boolean airportListClean=false;
 	private ProtocolSelect protocolSelect=null;
 	private boolean protocolListClean=false;
+	private JAFVASelect jafvaSelect=null;
+	private boolean jafvaListClean=false;
 
 	public Configuration(JFrame f) {
 		mainwindow=f;
@@ -146,6 +148,10 @@ public class Configuration {
 	public void setProtocolsDirty() {
 		protocolListClean=false;
 		protocolSelect.reloadList();
+	}
+
+	public void setJAFVASelect(JAFVASelect js) {
+		jafvaSelect=js;
 	}
 
 }

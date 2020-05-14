@@ -13,6 +13,7 @@ public class SurfaceLauncher extends JPanel {
 	private AircraftSelect aircraftSelect=null;
 	private AirportSelect airportSelect=null;
 	private ProtocolSelect protocolSelect=null;
+	private JAFVASelect jafvaSelect=null;
 	private StartFlightgear startFlightgear=null;
 
 	private JTabbedPane tabbed=new JTabbedPane(JTabbedPane.LEFT);
@@ -25,6 +26,7 @@ public class SurfaceLauncher extends JPanel {
 		aircraftSelect=new AircraftSelect(config);
 		airportSelect=new AirportSelect(config);
 		protocolSelect=new ProtocolSelect(config);
+		jafvaSelect=new JAFVASelect(config);
 		startFlightgear=new StartFlightgear(config, setup);
 
 		SpringLayout layout=new SpringLayout();
@@ -40,13 +42,10 @@ public class SurfaceLauncher extends JPanel {
 		layout1.putConstraint(SpringLayout.SOUTH, tabbed, -1, SpringLayout.SOUTH, this); 
 		layout1.putConstraint(SpringLayout.EAST, tabbed, -1, SpringLayout.EAST, this); 
 
-JPanel test4=new JPanel();
-test4.setBackground(Color.CYAN);
-
 		tabbed.addTab("Select Aircraft", aircraftSelect);
 		tabbed.addTab("Select Airport", airportSelect);
 		tabbed.addTab("Protocols", protocolSelect);
-		tabbed.addTab("JAFVA", test4);
+		tabbed.addTab("JAFVA", jafvaSelect);
 		tabbed.addTab("Start FlightGear", startFlightgear);
 	}
 
