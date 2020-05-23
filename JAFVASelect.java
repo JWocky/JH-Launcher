@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.tree.*;
 
-public class JAFVASelect extends JPanel {
+public class JAFVASelect extends JPanel implements ActionListener {
 	private Configuration config=null;
 
 	private Font fntPanel=new Font("Courier", Font.PLAIN,20);
@@ -16,6 +16,7 @@ public class JAFVASelect extends JPanel {
 	private JCheckBox chkIsJafva=new JCheckBox();
 	private JLabel lblJafvaName=new JLabel("Your JAFVA name (Pilot Nickname)");
 	private JTextField txtJafvaName=new JTextField("");
+	private JButton btnReload=new JButton("Reload");
 	private JLabel lblCode=new JLabel("Code");
 	private JTextField txtCode=new JTextField("");
 	private JLabel lblCountry=new JLabel("Country");
@@ -84,6 +85,11 @@ public class JAFVASelect extends JPanel {
 		txtJafvaName.setBackground(Color.YELLOW);
 		txtJafvaName.setOpaque(true);
 		add(txtJafvaName);
+
+		btnReload.setFont(fntPanel);
+//		btnReload.setBackground(Color.YELLOW);
+		btnReload.addActionListener(this);
+		add(btnReload);
 
 		lblCode.setFont(fntPanel);
 		lblCode.setBackground(Color.YELLOW);
@@ -229,6 +235,10 @@ public class JAFVASelect extends JPanel {
 		layout1.putConstraint(SpringLayout.NORTH, txtJafvaName, 0, SpringLayout.NORTH, lblJafvaName); 
 		layout1.putConstraint(SpringLayout.WEST, txtJafvaName, 10, SpringLayout.EAST, lblJafvaName); 
 		layout1.putConstraint(SpringLayout.EAST, txtJafvaName, 250, SpringLayout.WEST, txtJafvaName); 
+	
+		layout1.putConstraint(SpringLayout.NORTH, btnReload, 0, SpringLayout.NORTH, txtJafvaName); 
+		layout1.putConstraint(SpringLayout.WEST, btnReload, 10, SpringLayout.EAST, txtJafvaName); 
+		layout1.putConstraint(SpringLayout.SOUTH, btnReload, 0, SpringLayout.SOUTH, txtJafvaName); 
 
 		layout1.putConstraint(SpringLayout.NORTH, lblCode, 100, SpringLayout.SOUTH, lblJafvaName); 
 		layout1.putConstraint(SpringLayout.WEST, lblCode, 10, SpringLayout.WEST, this); 
@@ -370,19 +380,31 @@ public class JAFVASelect extends JPanel {
 			txtHeading.setEnabled(true);
 			txtHeading.setText(heading);
 		} else {
-			txtCode.setEnabled(false);
+			txtCode.setEnabled(false);			
+			txtCode.setText("not found");			
 			txtCountry.setEnabled(false);
+			txtCountry.setText("not found");
 			txtRank.setEnabled(false);
+			txtRank.setText("not found");
 			txtPrefix.setEnabled(false);
+			txtPrefix.setText("not found");
 			txtTailsign.setEnabled(false);
+			txtTailsign.setText("not found");
 			txtTimeIR.setEnabled(false);
+			txtTimeIR.setText("not found");
 			txtTimeTP.setEnabled(false);
+			txtTimeTP.setText("not found");
 			txtTimeTotal.setEnabled(false);
+			txtTimeTotal.setText("not found");
 			chkPosition.setEnabled(false);
 			txtAirport.setEnabled(false);
+			txtAirport.setText("not found");
 			txtLatitude.setEnabled(false);
+			txtLatitude.setText("not found");
 			txtLongitude.setEnabled(false);
+			txtLongitude.setText("not found");
 			txtHeading.setEnabled(false);
+			txtHeading.setText("not found");
 		}
 	}
 
@@ -400,7 +422,6 @@ public class JAFVASelect extends JPanel {
 		}
 
 		tag=tag.trim();
-System.out.println("tag=>"+tag+"<");
 		tag=tag.substring(1, tag.length()-1);
 		value=value.trim();
 
@@ -567,6 +588,14 @@ System.out.println("tag=>"+tag+"<");
 	}
 
 	public void reloadData() {
+		String res=executePost("http://www.jafva.com/JHL/", "nickname="+config.getJafvaName()+"&command=datapack");
+	}
+
+	public void actionPerformed(ActionEvent ae) {
+		if (ae.getSource()==btnReload) {
+			config.setJafvaName(txtJafvaName.getText());
+			reloadData();
+		}
 	}
 
 }
