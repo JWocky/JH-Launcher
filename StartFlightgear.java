@@ -8,8 +8,8 @@ public class StartFlightgear extends JPanel implements ActionListener {
 
 	private Font fntPanel=new Font("Courier", Font.PLAIN,20);
 
-	private JButton btnStart=new JButton("Start Flightgear");
-	private JTextField txtMessages=new JTextField("");
+	private JButton btnStart=new JButton("<html>To start Flightgear<br>PRESS THIS GIANT YELLOW BUTTON!</html>");
+	private JTextArea txtMessages=new JTextArea("");
 
 	private String buffer="";
 
@@ -22,21 +22,22 @@ public class StartFlightgear extends JPanel implements ActionListener {
 		setBackground(Color.DARK_GRAY);
 
 		btnStart.setFont(fntPanel);
+		btnStart.setBackground(Color.YELLOW);
 		btnStart.addActionListener(this);
 		add(btnStart);
 
 		txtMessages.setFont(fntPanel);
 		add(txtMessages);
 
-		layout1.putConstraint(SpringLayout.NORTH, btnStart, 1, SpringLayout.NORTH, this); 
-		layout1.putConstraint(SpringLayout.WEST, btnStart, 1, SpringLayout.WEST, this); 
-//		layout1.putConstraint(SpringLayout.SOUTH, btnStart, -1, SpringLayout.SOUTH, this); 
-		layout1.putConstraint(SpringLayout.EAST, btnStart, -1, SpringLayout.EAST, this); 
+		layout1.putConstraint(SpringLayout.NORTH, btnStart, 20, SpringLayout.NORTH, this); 
+		layout1.putConstraint(SpringLayout.WEST, btnStart, 20, SpringLayout.WEST, this); 
+		layout1.putConstraint(SpringLayout.SOUTH, btnStart, 60, SpringLayout.NORTH, btnStart); 
+		layout1.putConstraint(SpringLayout.EAST, btnStart, -20, SpringLayout.EAST, this); 
 
 		layout1.putConstraint(SpringLayout.NORTH, txtMessages, 10, SpringLayout.SOUTH, btnStart); 
-		layout1.putConstraint(SpringLayout.WEST, txtMessages, 5, SpringLayout.WEST, this); 
-		layout1.putConstraint(SpringLayout.SOUTH, txtMessages, -5, SpringLayout.SOUTH, this); 
-		layout1.putConstraint(SpringLayout.EAST, txtMessages, -5, SpringLayout.EAST, this); 
+		layout1.putConstraint(SpringLayout.WEST, txtMessages, 20, SpringLayout.WEST, this); 
+		layout1.putConstraint(SpringLayout.SOUTH, txtMessages, -10, SpringLayout.SOUTH, this); 
+		layout1.putConstraint(SpringLayout.EAST, txtMessages, -20, SpringLayout.EAST, this); 
 	}
 
 	public void actionPerformed(ActionEvent ae) {
@@ -50,6 +51,9 @@ public class StartFlightgear extends JPanel implements ActionListener {
 	}
 
 	public void addLine(String l) {
+		if (!buffer.equals("")) {
+			buffer=buffer+"\n";
+		}
 		buffer=buffer+l;
 		txtMessages.setText(buffer);
 	}

@@ -151,6 +151,7 @@ public class AircraftSelect extends JPanel implements TreeSelectionListener {
 		String helpstr=(String)selectedNode.getUserObject();
 		helpstr=helpstr.substring(0, helpstr.length()-8);
 		txtCurrSelected.setText(helpstr);
+		config.setSelectedAircraft(helpstr);
 	}
 
 }

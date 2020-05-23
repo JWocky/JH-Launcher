@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class Setup {
 
@@ -16,11 +17,48 @@ public class Setup {
 	public void startFG(StartFlightgear surf) {
 System.out.println("trying to start FG");
 		try {
-			String commandLine="";
-			commandLine="/usr/games/fgfs --fg-root=/home/peter/fgdata/fgdata --fg-scenery=/home/peter/fgdata/terraGit --fg-aircraft=/home/peter/fgdata/JWocky_Hangar/Aircraft/:/home/peter/fgdata/fgdata/Aircraft --disable-ai-traffic --generic=file,out,0.17,JAFVA/blackbox.csv,blackbox --aircraft=JH-767-300ER --airport=KBLV";
-			Process process = new ProcessBuilder(
-				"/usr/games/fgfs"
-			).start();
+			// build a list of all the parameters
+			LinkedList<String> props=new LinkedList<String>();
+			props.add("fgfs");
+			props.add("--fg-root="+config.getRoot().getPath());
+
+			String sep=System.getProperty("path.separator");
+
+			String terrains="--fg-scenery=";
+			LinkedList<DirectoryEntry> terrainList=config.getTerrainDirectories();
+			for (int i=0; i<terrainList.size(); i++) {
+				if (!terrains.equals("--fg-scenery=")) {
+					terrains=terrains+sep;
+				}
+				terrains=terrains+terrainList.get(i).getPath();
+			}
+			props.add(terrains);
+
+			String aircrafts="--fg-aircraft=";
+			LinkedList<DirectoryEntry> aircraftList=config.getAircraftDirectories();
+			for (int i=0; i<aircraftList.size(); i++) {
+				if (!aircrafts.equals("--fg-aircraft=")) {
+					aircrafts=aircrafts+sep;
+				}
+				aircrafts=aircrafts+aircraftList.get(i).getPath();
+			}
+			props.add(aircrafts);
+
+			String protocols="";
+			LinkedList<ProtocolEntry> protocolList=config.getProtocols();
+			for (int i=0; i<protocolList.size(); i++) {
+				if (protocolList.get(i).getSelected()) {
+					protocols="--generic="+protocolList.get(i).getParameters();
+					props.add(protocols);
+				}
+			}
+
+			props.add("--aircraft="+config.getSelectedAircraft());
+			props.add("--airport="+config.getSelectedAirport());
+
+			// then start the process with this list
+			Process process = new ProcessBuilder(props).start();
+
 			InputStream is = process.getInputStream();
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);

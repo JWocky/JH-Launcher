@@ -145,6 +145,7 @@ public class AirportSelect extends JPanel implements TreeSelectionListener {
 //		int posi=helpstr.indexOf(".threshold.");
 //		helpstr=helpstr.substring(0, posi);
 		txtCurrSelected.setText(helpstr);
+		config.setSelectedAirport(helpstr);
 	}
 
 }

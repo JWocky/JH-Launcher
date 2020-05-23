@@ -26,8 +26,9 @@ public class Configuration {
 	public Configuration(JFrame f) {
 		mainwindow=f;
 		// just some data for test purposes till I figure out where and how I want to store a configuration permanently
-		DirectoryEntry rootDirectory=new DirectoryEntry();
+		rootDirectory=new DirectoryEntry();
 		rootDirectory.setPath("/home/peter/fgdata/fgdata");
+
 		DirectoryEntry dir=new DirectoryEntry();
 		dir.setPath("/home/peter/fgdata/JWocky_Hangar/Aircraft");
 		aircraftDirectories.add(dir);
@@ -57,6 +58,14 @@ public class Configuration {
 
 	public JFrame getMainWindow() {
 		return(mainwindow);
+	}
+
+	public DirectoryEntry getRoot() {
+		return(rootDirectory);
+	}
+
+	public void setRoot(DirectoryEntry de) {
+		rootDirectory=de;
 	}
 
 	public LinkedList<DirectoryEntry> getAircraftDirectories() {
@@ -99,6 +108,14 @@ public class Configuration {
 		return(jafvaName);
 	}
 
+	public void setSelectedAircraft(String ae) {
+		aircraft.setName(ae);
+	}
+
+	public String getSelectedAircraft() {
+		return(aircraft.getName());
+	}
+
 	public void setAircraftSelect(AircraftSelect as) {
 		aircraftSelect=as;
 	}
@@ -118,6 +135,14 @@ public class Configuration {
 
 	public void setAirportSelect(AirportSelect as) {
 		airportSelect=as;
+	}
+
+	public void setSelectedAirport(String ae) {
+		airport.setICAOCode(ae);
+	}
+
+	public String getSelectedAirport() {
+		return(airport.getICAOCode());
 	}
 
 	public boolean isAirportClean() {
