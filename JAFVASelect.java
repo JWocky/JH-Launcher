@@ -400,10 +400,11 @@ public class JAFVASelect extends JPanel {
 		}
 
 		tag=tag.trim();
+System.out.println("tag=>"+tag+"<");
 		tag=tag.substring(1, tag.length()-1);
 		value=value.trim();
 
-		if (value.substring(0,1).equals("'")) {
+		if (value.substring(0,1).equals("\"")) {
 			value=value.substring(1, value.length()-1);
 		}
 		if (tag.equals("exist")) {
@@ -480,7 +481,7 @@ public class JAFVASelect extends JPanel {
 						value=value+c;
 					}
 				}
-			} else if (c.equals("'")) {
+			} else if (c.equals("\"")) {
 				inQuot=!inQuot;
 				if (inTag) {
 					tag=tag+c;
