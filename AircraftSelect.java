@@ -68,11 +68,15 @@ public class AircraftSelect extends JPanel implements TreeSelectionListener {
 			File folder=new File(buffer.get(i).getPath());
 			if (folder.exists()) {
 				root.add(direc);
-				for (final File fileEntry : folder.listFiles()) {
+				File[] f=folder.listFiles();
+				Arrays.sort(f);
+				for (final File fileEntry : f) {
 				        if (fileEntry.isDirectory()) {
 						DefaultMutableTreeNode project=new DefaultMutableTreeNode(fileEntry.getName());
 						if (fileEntry.exists()) {
-							for (final File fileEntry2 : fileEntry.listFiles()) {
+							File[] g=fileEntry.listFiles();
+							Arrays.sort(g);
+							for (final File fileEntry2 : g) {
 								boolean found=false;
 								String teststr="-SET.XML";
 								if (fileEntry2.getName().length()>8) {
@@ -112,11 +116,15 @@ public class AircraftSelect extends JPanel implements TreeSelectionListener {
 			File folder=new File(buffer.get(i).getPath());
 			if (folder.exists()) {
 				root.add(direc);
-				for (final File fileEntry : folder.listFiles()) {
+				File[] f=folder.listFiles();
+				Arrays.sort(f);
+				for (final File fileEntry : f) {
 				        if (fileEntry.isDirectory()) {
 						DefaultMutableTreeNode project=new DefaultMutableTreeNode(fileEntry.getName());
 						if (fileEntry.exists()) {
-							for (final File fileEntry2 : fileEntry.listFiles()) {
+							File[] g=fileEntry.listFiles();
+							Arrays.sort(g);
+							for (final File fileEntry2 : g) {
 								boolean found=false;
 								String teststr="-SET.XML";
 								if (fileEntry2.getName().length()>8) {
