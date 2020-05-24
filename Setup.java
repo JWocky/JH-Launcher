@@ -15,11 +15,11 @@ public class Setup {
 	}
 
 	public void startFG(StartFlightgear surf) {
-System.out.println("trying to start FG");
 		try {
 			// build a list of all the parameters
 			LinkedList<String> props=new LinkedList<String>();
 			props.add("fgfs");
+System.out.println("root="+config.getRoot().getPath());
 			props.add("--fg-root="+config.getRoot().getPath());
 
 			String sep=System.getProperty("path.separator");
@@ -63,8 +63,6 @@ System.out.println("trying to start FG");
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
 			String line;
-
-//		System.out.printf("Output of running %s is:", Arrays.toString(args));
 
 			while ((line = br.readLine()) != null) {
   				System.out.println(line);

@@ -8,6 +8,7 @@ public class SurfaceSettings extends JPanel{
 
 	private Font fntTabbed=new Font("Courier", Font.PLAIN,20);
 
+	private RootDirectorySelect rootDirectorySelect=null;
 	private AircraftDirectorySelect aircraftDirectorySelect=null;
 	private TerrainDirectorySelect terrainDirectorySelect=null;
 	private DefaultProtocolSelect defaultProtocolSelect=null;
@@ -20,6 +21,7 @@ public class SurfaceSettings extends JPanel{
 		setup=s;
 		win=config.getMainWindow();
 
+		rootDirectorySelect=new RootDirectorySelect(config);
 		aircraftDirectorySelect=new AircraftDirectorySelect(config);
 		terrainDirectorySelect=new TerrainDirectorySelect(config);
 		defaultProtocolSelect=new DefaultProtocolSelect(config);
@@ -35,6 +37,7 @@ public class SurfaceSettings extends JPanel{
 		layout1.putConstraint(SpringLayout.SOUTH, tabbed, -1, SpringLayout.SOUTH, this); 
 		layout1.putConstraint(SpringLayout.EAST, tabbed, -1, SpringLayout.EAST, this); 
 
+		tabbed.addTab("Root Directory", rootDirectorySelect);
 		tabbed.addTab("Aircraft Directories", aircraftDirectorySelect);
 		tabbed.addTab("Terrain Directories", terrainDirectorySelect);
 		tabbed.addTab("Default Protocols", defaultProtocolSelect);
