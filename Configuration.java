@@ -12,7 +12,12 @@ public class Configuration {
 	private AircraftEntry aircraft=null;
 	private AirportEntry airport=null;
 	private boolean isJAFVA=true;
+	private boolean jafvaOverwrite=true;
 	private String jafvaName="JWocky";
+	private String airportJafva="";
+	private String latitudeJafva="";
+	private String longitudeJafva="";
+	private String headingJafva="";
 
 	private AircraftSelect aircraftSelect=null;
 	private boolean aircraftTreeClean=false;
@@ -100,12 +105,52 @@ public class Configuration {
 		return(isJAFVA);
 	}
 
+	public void setJafvaOverwrite(boolean b) {
+		jafvaOverwrite=b;
+	}
+
+	public boolean getJafvaOverwrite() {
+		return(jafvaOverwrite);
+	}
+
 	public void setJafvaName(String s) {
 		jafvaName=s;
 	}
 
 	public String getJafvaName() {
 		return(jafvaName);
+	}
+
+	public void setAirportJafva(String s) {
+		airportJafva=s;
+	}
+
+	public String getAirportJafva() {
+		return(airportJafva);
+	}
+
+	public void setLatitudeJafva(String s) {
+		latitudeJafva=s;
+	}
+
+	public String getLatitudeJafva() {
+		return(latitudeJafva);
+	}
+
+	public void setLongitudeJafva(String s) {
+		longitudeJafva=s;
+	}
+
+	public String getLongitudeJafva() {
+		return(longitudeJafva);
+	}
+
+	public void setHeadingJafva(String s) {
+		headingJafva=s;
+	}
+
+	public String getHeadingJafva() {
+		return(headingJafva);
 	}
 
 	public void setSelectedAircraft(String ae) {

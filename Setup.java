@@ -19,7 +19,6 @@ public class Setup {
 			// build a list of all the parameters
 			LinkedList<String> props=new LinkedList<String>();
 			props.add("fgfs");
-System.out.println("root="+config.getRoot().getPath());
 			props.add("--fg-root="+config.getRoot().getPath());
 
 			String sep=System.getProperty("path.separator");
@@ -54,7 +53,19 @@ System.out.println("root="+config.getRoot().getPath());
 			}
 
 			props.add("--aircraft="+config.getSelectedAircraft());
-			props.add("--airport="+config.getSelectedAirport());
+
+			if (config.getJafva()) {
+				if (config.getJafvaOverwrite()) {
+					props.add("--airport="+config.getAirportJafva());
+					props.add("--lat="+config.getLatitudeJafva());
+					props.add("--lon="+config.getLongitudeJafva());
+					props.add("--heading="+config.getHeadingJafva());
+				} else {
+					props.add("--airport="+config.getSelectedAirport());
+				}
+			} else {
+				props.add("--airport="+config.getSelectedAirport());
+			}
 
 			// then start the process with this list
 			Process process = new ProcessBuilder(props).start();

@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.tree.*;
 
-public class JAFVASelect extends JPanel implements ActionListener {
+public class JAFVASelect extends JPanel implements ActionListener, DocumentListener {
 	private Configuration config=null;
 
 	private Font fntPanel=new Font("Courier", Font.PLAIN,20);
@@ -74,6 +74,7 @@ public class JAFVASelect extends JPanel implements ActionListener {
 		chkIsJafva.setFont(fntPanel);
 		chkIsJafva.setBackground(Color.YELLOW);
 		chkIsJafva.setOpaque(true);
+		chkIsJafva.addActionListener(this);
 		add(chkIsJafva);
 
 		lblJafvaName.setFont(fntPanel);
@@ -87,7 +88,6 @@ public class JAFVASelect extends JPanel implements ActionListener {
 		add(txtJafvaName);
 
 		btnReload.setFont(fntPanel);
-//		btnReload.setBackground(Color.YELLOW);
 		btnReload.addActionListener(this);
 		add(btnReload);
 
@@ -179,6 +179,7 @@ public class JAFVASelect extends JPanel implements ActionListener {
 		chkPosition.setFont(fntPanel);
 		chkPosition.setBackground(Color.YELLOW);
 		chkPosition.setOpaque(true);
+		chkPosition.addActionListener(this);
 		add(chkPosition);
 
 		lblAirport.setFont(fntPanel);
@@ -189,6 +190,7 @@ public class JAFVASelect extends JPanel implements ActionListener {
 		txtAirport.setFont(fntPanel);
 		txtAirport.setBackground(Color.YELLOW);
 		txtAirport.setOpaque(true);
+		txtAirport.getDocument().addDocumentListener(this);
 		add(txtAirport);
 
 		lblLatitude.setFont(fntPanel);
@@ -199,6 +201,7 @@ public class JAFVASelect extends JPanel implements ActionListener {
 		txtLatitude.setFont(fntPanel);
 		txtLatitude.setBackground(Color.YELLOW);
 		txtLatitude.setOpaque(true);
+		txtLatitude.getDocument().addDocumentListener(this);
 		add(txtLatitude);
 
 		lblLongitude.setFont(fntPanel);
@@ -209,6 +212,7 @@ public class JAFVASelect extends JPanel implements ActionListener {
 		txtLongitude.setFont(fntPanel);
 		txtLongitude.setBackground(Color.YELLOW);
 		txtLongitude.setOpaque(true);
+		txtLongitude.getDocument().addDocumentListener(this);
 		add(txtLongitude);
 
 		lblHeading.setFont(fntPanel);
@@ -219,6 +223,7 @@ public class JAFVASelect extends JPanel implements ActionListener {
 		txtHeading.setFont(fntPanel);
 		txtHeading.setBackground(Color.YELLOW);
 		txtHeading.setOpaque(true);
+		txtHeading.getDocument().addDocumentListener(this);
 		add(txtHeading);
 
 		layout1.putConstraint(SpringLayout.NORTH, lblIsJafva, 10, SpringLayout.NORTH, this); 
@@ -595,6 +600,57 @@ public class JAFVASelect extends JPanel implements ActionListener {
 		if (ae.getSource()==btnReload) {
 			config.setJafvaName(txtJafvaName.getText());
 			reloadData();
+		}
+		if (ae.getSource()==chkIsJafva) {
+			config.setJafva(chkIsJafva.isSelected());
+		}
+		if (ae.getSource()==chkPosition) {
+			config.setJafvaOverwrite(chkPosition.isSelected());
+		}
+	}
+
+	public void changedUpdate​(DocumentEvent de) {
+		if (de.getDocument()==txtAirport.getDocument()) {
+			config.setAirportJafva(txtAirport.getText());
+		}
+		if (de.getDocument()==txtLatitude.getDocument()) {
+			config.setLatitudeJafva(txtLatitude.getText());
+		}
+		if (de.getDocument()==txtLongitude.getDocument()) {
+			config.setLongitudeJafva(txtLongitude.getText());
+		}
+		if (de.getDocument()==txtHeading.getDocument()) {
+			config.setHeadingJafva(txtHeading.getText());
+		}
+	}
+
+	public void insertUpdate​(DocumentEvent de) {
+		if (de.getDocument()==txtAirport.getDocument()) {
+			config.setAirportJafva(txtAirport.getText());
+		}
+		if (de.getDocument()==txtLatitude.getDocument()) {
+			config.setLatitudeJafva(txtLatitude.getText());
+		}
+		if (de.getDocument()==txtLongitude.getDocument()) {
+			config.setLongitudeJafva(txtLongitude.getText());
+		}
+		if (de.getDocument()==txtHeading.getDocument()) {
+			config.setHeadingJafva(txtHeading.getText());
+		}
+	}
+
+	public void removeUpdate​(DocumentEvent de) {
+		if (de.getDocument()==txtAirport.getDocument()) {
+			config.setAirportJafva(txtAirport.getText());
+		}
+		if (de.getDocument()==txtLatitude.getDocument()) {
+			config.setLatitudeJafva(txtLatitude.getText());
+		}
+		if (de.getDocument()==txtLongitude.getDocument()) {
+			config.setLongitudeJafva(txtLongitude.getText());
+		}
+		if (de.getDocument()==txtHeading.getDocument()) {
+			config.setHeadingJafva(txtHeading.getText());
 		}
 	}
 
