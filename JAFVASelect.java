@@ -376,14 +376,19 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 			txtTimeTotal.setEnabled(true);
 			txtTimeTotal.setText(timeTotal);
 			chkPosition.setEnabled(true);
+			config.setJafvaOverwrite(chkPosition.isSelected());
 			txtAirport.setEnabled(true);
 			txtAirport.setText(airport);
+			config.setAirportJafva(airport);
 			txtLatitude.setEnabled(true);
 			txtLatitude.setText(lat);
+			config.setLatitudeJafva(lat);
 			txtLongitude.setEnabled(true);
 			txtLongitude.setText(lon);
+			config.setLongitudeJafva(lon);
 			txtHeading.setEnabled(true);
 			txtHeading.setText(heading);
+			config.setHeadingJafva(heading);
 		} else {
 			txtCode.setEnabled(false);			
 			txtCode.setText("not found");			
