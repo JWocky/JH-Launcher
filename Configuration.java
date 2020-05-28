@@ -12,7 +12,7 @@ public class Configuration {
 	private AircraftEntry aircraft=null;
 	private AirportEntry airport=null;
 	private boolean isJAFVA=true;
-	private boolean jafvaOverwrite=true;
+	private boolean jafvaOverwrite=false;
 	private String jafvaName="JWocky";
 	private String airportJafva="";
 	private String latitudeJafva="";

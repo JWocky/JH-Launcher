@@ -156,10 +156,12 @@ public class AircraftSelect extends JPanel implements TreeSelectionListener {
 
 	public void valueChanged(TreeSelectionEvent tse) {
 		DefaultMutableTreeNode selectedNode=(DefaultMutableTreeNode)treAircraft.getLastSelectedPathComponent();
-		String helpstr=(String)selectedNode.getUserObject();
-		helpstr=helpstr.substring(0, helpstr.length()-8);
-		txtCurrSelected.setText(helpstr);
-		config.setSelectedAircraft(helpstr);
+		if (selectedNode!=null) {
+			String helpstr=(String)selectedNode.getUserObject();
+			helpstr=helpstr.substring(0, helpstr.length()-8);
+			txtCurrSelected.setText(helpstr);
+			config.setSelectedAircraft(helpstr);
+		}
 	}
 
 }
