@@ -67,6 +67,11 @@ public class Setup {
 				props.add("--airport="+config.getSelectedAirport());
 			}
 
+for (int i=0; i<props.size(); i++) {
+	System.out.print(props.get(i)+" ");
+}
+System.out.println();
+
 			// then start the process with this list
 			Process process = new ProcessBuilder(props).start();
 
@@ -82,6 +87,12 @@ public class Setup {
 		} catch(IOException ioe) {
 			// really not sure now what to do because I still need to program me a nice window to show the error
 			System.out.println(ioe.getMessage());
+		} catch(SecurityException se) {
+			// really not sure now what to do because I still need to program me a nice window to show the error
+			System.out.println(se.getMessage());
+		} catch(UnsupportedOperationException uoe) {
+			// really not sure now what to do because I still need to program me a nice window to show the error
+			System.out.println(uoe.getMessage());
 		}
 	}
 	
