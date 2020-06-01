@@ -1,0 +1,54 @@
+<directories>
+	<root>
+		/home/peter/fgdata/fgdata
+	</root>
+	<aircraft>
+		<aircraft>
+			/home/peter/fgdata/JWocky_Hangar/Aircraft
+		</aircraft>
+		<aircraft>
+			/home/peter/fgdata/fgdata/Aircraft
+		</aircraft>
+		<aircraft>
+			/home/peter/fgdata/fgdata/Blah
+		</aircraft>
+	</aircraft>
+	<terrains>
+		<terrain>
+			/home/peter/fgdata/terraGit
+		</terrain>
+	</terrains>
+</directories>
+<protocols>
+	<protocol>
+		file,out,0.17,JAFVA/blackbox.csv,blackbox
+	</protocol>
+</protocols>
+<jafva>
+	<isjafva>
+		TRUE
+	</isjafva>
+	<jafvaoverwrite>
+		FALSE
+	</jafvaoverwrite>
+	<jafvaname>
+		JWocky
+	</jafvaname>
+	<jafvaairport>
+		EDDT
+	</jafvaairport>
+	<jafvalat>
+		52.555458314857
+	</jafvalat>
+	<jafvalon>
+		13.29344089344
+	</jafvalon>
+	<jafvaheading>
+		137.53
+	</jafvaheading>
+</jafva>
+<options>
+	<aitraffic>
+		FALSE
+	</aitraffic>
+</options>

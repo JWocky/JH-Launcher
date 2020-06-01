@@ -74,6 +74,7 @@ public class JHL extends JFrame implements WindowListener, ActionListener {
 	}
 
 	public void stopProgram() {
+		config.writeConfig();
 		setVisible(false);
 		dispose();
 		System.exit(0);
