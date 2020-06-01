@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+
+<!-- Uses the Generic output protocol to create a comma separated values -->
+<!-- file that contains the flight tracking information -->
+<!-- copyright: Israel Hernandez, IAHM-COL; 2020 -->
+<!-- License: GPL version 3+ -->
+<!-- Example usage: <dash><dash>generic=file,out,0.16,output.csv,blackbox -->
+
+<PropertyList>
+
+ <generic>
+
+  <output>
+   <line_separator>newline</line_separator>
+   <var_separator>,</var_separator>
+
+   <chunk>
+    <name>Callsign</name>
+    <type>string</type>
+    <format>"%s"</format>
+    <node>/sim/multiplay/callsign</node>
+   </chunk>
+
+   <chunk>
+    <name>Aircraft Model</name>
+    <type>string</type>
+    <format>"%s"</format>
+    <node>/sim/aircraft</node>
+   </chunk>
+
+   <chunk>
+    <name>NRST Airport</name>
+    <type>string</type>
+    <format>"%s"</format>
+    <node>/sim/airport/closest-airport-id</node>
+   </chunk>
+
+   <chunk>
+    <name>WoW</name>
+    <type>bool</type>
+    <node>/gear/gear/wow</node>
+   </chunk>
+   
+   <chunk>
+    <name>multiplayer server</name>
+    <type>string</type>
+    <format>"%s"</format>
+    <node>/sim/multiplay/txhost</node>
+   </chunk>
+
+   <chunk>
+    <name>Time (gmt)</name>
+    <type>string</type>
+    <format>"%s"</format>
+    <node>/sim/time/gmt</node>
+   </chunk>
+
+   <chunk>
+    <name>Ellapsed second</name>
+    <type>double</type>
+    <format>%.2f</format>
+    <node>/sim/time/elapsed-sec</node>
+   </chunk>
+
+   <chunk>
+    <name>sim-rate</name>
+    <type>double</type>
+    <format>%f</format>
+    <node>/sim/speed-up</node>
+   </chunk>
+
+   <chunk>
+    <name>longitude</name>
+    <type>double</type>
+    <format>%.12f</format>
+    <node>/position/longitude-deg</node>
+   </chunk>
+
+   <chunk>
+    <name>Latitude</name>
+    <type>double</type>
+    <format>%.12f</format>
+    <node>/position/latitude-deg</node>
+   </chunk>
+
+   <chunk>
+    <name>Elevation (ft)</name>
+    <type>double</type>
+    <format>%.4f</format>
+    <node>/position/altitude-ft</node>
+   </chunk>
+
+   <chunk>
+    <name>Elevation AGL (ft)</name>
+    <type>double</type>
+    <format>%.4f</format>
+    <node>/position/altitude-agl-ft</node>
+   </chunk>
+
+   <chunk>
+    <name>Ground elevation (ft)</name>
+    <type>double</type>
+    <format>%.4f</format>
+    <node>/position/ground-elev-ft</node>
+   </chunk>
+
+   <chunk>
+    <name>Airspeed (kts)</name>
+    <type>double</type>
+    <format>%f</format>
+    <node>/velocities/airspeed-kt</node>
+   </chunk>
+
+   <chunk>
+    <name>Airspeed (MA)</name>
+    <type>double</type>
+    <format>%f</format>
+    <node>/velocities/mach</node>
+   </chunk>
+   
+   <chunk>
+    <name>Groundspeed (kts)</name>
+    <type>double</type>
+    <format>%f</format>
+    <node>/velocities/groundspeed-kt</node>
+   </chunk>
+
+   <chunk>
+    <name>Heading</name>
+    <type>double</type>
+    <format>%.2f</format>
+    <node>/orientation/heading-deg</node>
+   </chunk>
+   
+  </output>
+ 
+ </generic>
+
+</PropertyList>
