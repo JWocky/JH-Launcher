@@ -2,7 +2,7 @@
 	<root>
 		/home/peter/fgdata/fgdata
 	</root>
-	<aircraft>
+	<aircrafts>
 		<aircraft>
 			/home/peter/fgdata/JWocky_Hangar/Aircraft
 		</aircraft>
@@ -12,7 +12,7 @@
 		<aircraft>
 			/home/peter/fgdata/fgdata/Blah
 		</aircraft>
-	</aircraft>
+	</aircrafts>
 	<terrains>
 		<terrain>
 			/home/peter/fgdata/terraGit
@@ -35,16 +35,16 @@
 		JWocky
 	</jafvaname>
 	<jafvaairport>
-		EDDT
+		EGFF
 	</jafvaairport>
 	<jafvalat>
-		52.555458314857
+		51.396923142529
 	</jafvalat>
 	<jafvalon>
-		13.29344089344
+		-3.335970455831
 	</jafvalon>
 	<jafvaheading>
-		137.53
+		33.7
 	</jafvaheading>
 </jafva>
 <options>
