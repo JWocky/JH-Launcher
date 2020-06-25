@@ -95,19 +95,41 @@ System.out.println("Rename old "+s[3]+" to "+newname);
 			} else {
 				props.add("--airport="+config.getSelectedAirport());
 			}
-
+			
 			// then start the process with this list
+			boolean processRunning=true;
 			Process process = new ProcessBuilder(props).start();
 
-			InputStream is = process.getInputStream();
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
+			InputStream isIn = process.getInputStream();
+			InputStreamReader isrIn = new InputStreamReader(isIn);
+			BufferedReader brIn = new BufferedReader(isrIn);
+			InputStream isErr = process.getErrorStream();
+			InputStreamReader isrErr = new InputStreamReader(isErr);
+			BufferedReader brErr = new BufferedReader(isrErr);
 			String line;
 
-			while ((line = br.readLine()) != null) {
-  				System.out.println(line);
-				surf.addLine(line);
+			while (processRunning) {
+				try {
+					int exitCode=process.exitValue();
+					processRunning=false;
+				} catch(IllegalThreadStateException itse) {
+					processRunning=true;
+				}
+
+				if (brIn.ready()) {
+					line=brIn.readLine();
+					System.out.println("Input: "+line);
+					surf.addLine(line);
+				}
+
+				if (brErr.ready()) {
+					line=brErr.readLine();
+					System.out.println("Error: "+line);
+					surf.addLine(line);
+				}
+				Thread.yield();
 			}
+
 		} catch(IOException ioe) {
 			// really not sure now what to do because I still need to program me a nice window to show the error
 			System.out.println(ioe.getMessage());
