@@ -47,7 +47,36 @@ public class Setup {
 			LinkedList<ProtocolEntry> protocolList=config.getProtocols();
 			for (int i=0; i<protocolList.size(); i++) {
 				if (protocolList.get(i).getSelected()) {
-					protocols="--generic="+protocolList.get(i).getParameters();
+					String para=protocolList.get(i).getParameters();
+					int p=0;
+					String[] s=new String[5];
+					s[0]="";
+					s[1]="";
+					s[2]="";
+					s[3]="";
+					s[4]="";
+					for (int j=0; j<para.length(); j++) {
+						String c=para.substring(j,j+1);
+						if (c.equals(",")) {
+							p=p+1;
+						} else {
+							s[p]=s[p]+c;
+						}
+					}
+					if (s[0].equalsIgnoreCase("file")) {
+						File f = new File(s[3]);
+						if(f.exists() && !f.isDirectory()) { 
+							String name = s[3];
+							int dot = name.lastIndexOf('.');
+							String base = (dot == -1) ? name : name.substring(0, dot);
+							String extension = (dot == -1) ? "" : name.substring(dot+1);
+							String newname=base+f.lastModified()+"."+extension;
+							File file2 = new File(newname);
+System.out.println("Rename old "+s[3]+" to "+newname);
+							f.renameTo(file2);						
+						}						
+					}
+					protocols="--generic="+para;
 					props.add(protocols);
 				}
 			}
@@ -66,11 +95,6 @@ public class Setup {
 			} else {
 				props.add("--airport="+config.getSelectedAirport());
 			}
-
-for (int i=0; i<props.size(); i++) {
-	System.out.print(props.get(i)+" ");
-}
-System.out.println();
 
 			// then start the process with this list
 			Process process = new ProcessBuilder(props).start();

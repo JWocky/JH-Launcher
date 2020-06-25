@@ -29,22 +29,22 @@
 		TRUE
 	</isjafva>
 	<jafvaoverwrite>
-		FALSE
+		TRUE
 	</jafvaoverwrite>
 	<jafvaname>
 		JWocky
 	</jafvaname>
 	<jafvaairport>
-		EGFF
+		ELLX
 	</jafvaairport>
 	<jafvalat>
-		51.396923142529
+		49.631903314808
 	</jafvalat>
 	<jafvalon>
-		-3.335970455831
+		6.215072574223
 	</jafvalon>
 	<jafvaheading>
-		33.7
+		239.87
 	</jafvaheading>
 </jafva>
 <options>
