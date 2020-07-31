@@ -23,8 +23,8 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 	private JTextField txtCountry=new JTextField("");
 	private JLabel lblRank=new JLabel("Rank");
 	private JTextField txtRank=new JTextField("");
-	private JLabel lblPrefix=new JLabel("Prefix");
-	private JTextField txtPrefix=new JTextField("");
+	private JLabel lblSuffix=new JLabel("Suffix");
+	private JTextField txtSuffix=new JTextField("");
 	private JLabel lblTailsign=new JLabel("Tailsign");
 	private JTextField txtTailsign=new JTextField("");
 	private JLabel lblTimeIR=new JLabel("Time in rank");
@@ -33,6 +33,14 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 	private JTextField txtTimeTP=new JTextField("");
 	private JLabel lblTimeTotal=new JLabel("Time total");
 	private JTextField txtTimeTotal=new JTextField("");
+
+	private JLabel lblCallsign=new JLabel("Callsign (overwrite start)");
+	private JCheckBox chkCallsign=new JCheckBox();
+	private JLabel lblAirline=new JLabel("Airline");
+	private JTextField txtAirline=new JTextField("");
+	private JLabel lblSuffix2=new JLabel("Suffix");
+	private JTextField txtSuffix2=new JTextField("");
+
 	private JLabel lblPosition=new JLabel("Position (overwrite start)");
 	private JCheckBox chkPosition=new JCheckBox();
 	private JLabel lblAirport=new JLabel("Airport");
@@ -48,7 +56,7 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 	private String code="";
 	private String country="";
 	private String rank="";
-	private String prefix="";
+	private String suffix="";
 	private String tailsign="";
 	private String timeIR="";
 	private String timeTP="";
@@ -121,15 +129,15 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 		txtRank.setOpaque(true);
 		add(txtRank);
 
-		lblPrefix.setFont(fntPanel);
-		lblPrefix.setBackground(Color.YELLOW);
-		lblPrefix.setOpaque(true);
-		add(lblPrefix);
+		lblSuffix.setFont(fntPanel);
+		lblSuffix.setBackground(Color.YELLOW);
+		lblSuffix.setOpaque(true);
+		add(lblSuffix);
 
-		txtPrefix.setFont(fntPanel);
-		txtPrefix.setBackground(Color.YELLOW);
-		txtPrefix.setOpaque(true);
-		add(txtPrefix);
+		txtSuffix.setFont(fntPanel);
+		txtSuffix.setBackground(Color.YELLOW);
+		txtSuffix.setOpaque(true);
+		add(txtSuffix);
 
 		lblTailsign.setFont(fntPanel);
 		lblTailsign.setBackground(Color.YELLOW);
@@ -170,6 +178,38 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 		txtTimeTotal.setBackground(Color.YELLOW);
 		txtTimeTotal.setOpaque(true);
 		add(txtTimeTotal);
+
+		lblCallsign.setFont(fntPanel);
+		lblCallsign.setBackground(Color.YELLOW);
+		lblCallsign.setOpaque(true);
+		add(lblCallsign);
+
+		chkCallsign.setFont(fntPanel);
+		chkCallsign.setBackground(Color.YELLOW);
+		chkCallsign.setOpaque(true);
+		chkCallsign.addActionListener(this);
+		add(chkCallsign);
+
+		lblAirline.setFont(fntPanel);
+		lblAirline.setBackground(Color.YELLOW);
+		lblAirline.setOpaque(true);
+		add(lblAirline);
+
+		txtAirline.setFont(fntPanel);
+		txtAirline.setBackground(Color.YELLOW);
+		txtAirline.setOpaque(true);
+		txtAirline.getDocument().addDocumentListener(this);
+		add(txtAirline);
+
+		lblSuffix2.setFont(fntPanel);
+		lblSuffix2.setBackground(Color.YELLOW);
+		lblSuffix2.setOpaque(true);
+		add(lblSuffix2);
+
+		txtSuffix2.setFont(fntPanel);
+		txtSuffix2.setBackground(Color.YELLOW);
+		txtSuffix2.setOpaque(true);
+		add(txtSuffix2);
 
 		lblPosition.setFont(fntPanel);
 		lblPosition.setBackground(Color.YELLOW);
@@ -245,7 +285,7 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 		layout1.putConstraint(SpringLayout.WEST, btnReload, 10, SpringLayout.EAST, txtJafvaName); 
 		layout1.putConstraint(SpringLayout.SOUTH, btnReload, 0, SpringLayout.SOUTH, txtJafvaName); 
 
-		layout1.putConstraint(SpringLayout.NORTH, lblCode, 100, SpringLayout.SOUTH, lblJafvaName); 
+		layout1.putConstraint(SpringLayout.NORTH, lblCode, 60, SpringLayout.SOUTH, lblJafvaName); 
 		layout1.putConstraint(SpringLayout.WEST, lblCode, 10, SpringLayout.WEST, this); 
 		layout1.putConstraint(SpringLayout.EAST, lblCode, 410, SpringLayout.WEST, this); 
 	
@@ -269,15 +309,15 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 		layout1.putConstraint(SpringLayout.WEST, txtRank, 10, SpringLayout.EAST, lblRank); 
 		layout1.putConstraint(SpringLayout.EAST, txtRank, 450, SpringLayout.WEST, txtRank); 
 
-		layout1.putConstraint(SpringLayout.NORTH, lblPrefix, 10, SpringLayout.SOUTH, lblRank); 
-		layout1.putConstraint(SpringLayout.WEST, lblPrefix, 10, SpringLayout.WEST, this); 
-		layout1.putConstraint(SpringLayout.EAST, lblPrefix, 410, SpringLayout.WEST, this); 
+		layout1.putConstraint(SpringLayout.NORTH, lblSuffix, 10, SpringLayout.SOUTH, lblRank); 
+		layout1.putConstraint(SpringLayout.WEST, lblSuffix, 10, SpringLayout.WEST, this); 
+		layout1.putConstraint(SpringLayout.EAST, lblSuffix, 410, SpringLayout.WEST, this); 
 	
-		layout1.putConstraint(SpringLayout.NORTH, txtPrefix, 0, SpringLayout.NORTH, lblPrefix); 
-		layout1.putConstraint(SpringLayout.WEST, txtPrefix, 10, SpringLayout.EAST, lblPrefix); 
-		layout1.putConstraint(SpringLayout.EAST, txtPrefix, 250, SpringLayout.WEST, txtPrefix); 
+		layout1.putConstraint(SpringLayout.NORTH, txtSuffix, 0, SpringLayout.NORTH, lblSuffix); 
+		layout1.putConstraint(SpringLayout.WEST, txtSuffix, 10, SpringLayout.EAST, lblSuffix); 
+		layout1.putConstraint(SpringLayout.EAST, txtSuffix, 250, SpringLayout.WEST, txtSuffix); 
 
-		layout1.putConstraint(SpringLayout.NORTH, lblTailsign, 10, SpringLayout.SOUTH, lblPrefix); 
+		layout1.putConstraint(SpringLayout.NORTH, lblTailsign, 10, SpringLayout.SOUTH, lblSuffix); 
 		layout1.putConstraint(SpringLayout.WEST, lblTailsign, 10, SpringLayout.WEST, this); 
 		layout1.putConstraint(SpringLayout.EAST, lblTailsign, 410, SpringLayout.WEST, this); 
 	
@@ -309,7 +349,30 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 		layout1.putConstraint(SpringLayout.WEST, txtTimeTotal, 10, SpringLayout.EAST, lblTimeTotal); 
 		layout1.putConstraint(SpringLayout.EAST, txtTimeTotal, 450, SpringLayout.WEST, txtTimeTotal); 
 
-		layout1.putConstraint(SpringLayout.NORTH, lblPosition, 100, SpringLayout.SOUTH, lblTimeTotal); 
+		layout1.putConstraint(SpringLayout.NORTH, lblCallsign, 60, SpringLayout.SOUTH, lblTimeTotal); 
+		layout1.putConstraint(SpringLayout.WEST, lblCallsign, 10, SpringLayout.WEST, this); 
+		layout1.putConstraint(SpringLayout.EAST, lblCallsign, 410, SpringLayout.WEST, this); 
+	
+		layout1.putConstraint(SpringLayout.NORTH, chkCallsign, 0, SpringLayout.NORTH, lblCallsign); 
+		layout1.putConstraint(SpringLayout.WEST, chkCallsign, 10, SpringLayout.EAST, lblCallsign); 
+
+		layout1.putConstraint(SpringLayout.NORTH, lblAirline, 10, SpringLayout.SOUTH, lblCallsign); 
+		layout1.putConstraint(SpringLayout.WEST, lblAirline, 25, SpringLayout.WEST, this); 
+		layout1.putConstraint(SpringLayout.EAST, lblAirline, 425, SpringLayout.WEST, this); 
+	
+		layout1.putConstraint(SpringLayout.NORTH, txtAirline, 0, SpringLayout.NORTH, lblAirline); 
+		layout1.putConstraint(SpringLayout.WEST, txtAirline, 10, SpringLayout.EAST, lblAirline); 
+		layout1.putConstraint(SpringLayout.EAST, txtAirline, 350, SpringLayout.WEST, txtAirline); 
+
+		layout1.putConstraint(SpringLayout.NORTH, lblSuffix2, 10, SpringLayout.SOUTH, lblAirline); 
+		layout1.putConstraint(SpringLayout.WEST, lblSuffix2, 25, SpringLayout.WEST, this); 
+		layout1.putConstraint(SpringLayout.EAST, lblSuffix2, 425, SpringLayout.WEST, this); 
+	
+		layout1.putConstraint(SpringLayout.NORTH, txtSuffix2, 0, SpringLayout.NORTH, lblSuffix2); 
+		layout1.putConstraint(SpringLayout.WEST, txtSuffix2, 10, SpringLayout.EAST, lblSuffix2); 
+		layout1.putConstraint(SpringLayout.EAST, txtSuffix2, 350, SpringLayout.WEST, txtSuffix2); 
+
+		layout1.putConstraint(SpringLayout.NORTH, lblPosition, 60, SpringLayout.SOUTH, lblSuffix2); 
 		layout1.putConstraint(SpringLayout.WEST, lblPosition, 10, SpringLayout.WEST, this); 
 		layout1.putConstraint(SpringLayout.EAST, lblPosition, 410, SpringLayout.WEST, this); 
 	
@@ -365,8 +428,8 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 			txtCountry.setText(country);
 			txtRank.setEnabled(true);
 			txtRank.setText(rank);
-			txtPrefix.setEnabled(true);
-			txtPrefix.setText(prefix);
+			txtSuffix.setEnabled(true);
+			txtSuffix.setText(suffix);
 			txtTailsign.setEnabled(true);
 			txtTailsign.setText(tailsign);
 			txtTimeIR.setEnabled(true);
@@ -375,6 +438,16 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 			txtTimeTP.setText(timeTP);
 			txtTimeTotal.setEnabled(true);
 			txtTimeTotal.setText(timeTotal);
+
+			chkCallsign.setEnabled(true);
+			config.setJafvaCallsign(chkCallsign.isSelected());
+			txtAirline.setEnabled(true);
+			txtAirline.setText("???");
+			config.setAirlineJafva(txtAirline.getText());
+			txtSuffix2.setEnabled(true);
+			txtSuffix2.setText(suffix);
+			config.setSuffixJafva(suffix);
+
 			chkPosition.setEnabled(true);
 			config.setJafvaOverwrite(chkPosition.isSelected());
 			txtAirport.setEnabled(true);
@@ -396,8 +469,8 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 			txtCountry.setText("not found");
 			txtRank.setEnabled(false);
 			txtRank.setText("not found");
-			txtPrefix.setEnabled(false);
-			txtPrefix.setText("not found");
+			txtSuffix.setEnabled(false);
+			txtSuffix.setText("not found");
 			txtTailsign.setEnabled(false);
 			txtTailsign.setText("not found");
 			txtTimeIR.setEnabled(false);
@@ -406,6 +479,13 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 			txtTimeTP.setText("not found");
 			txtTimeTotal.setEnabled(false);
 			txtTimeTotal.setText("not found");
+
+			chkCallsign.setEnabled(false);
+			txtAirline.setEnabled(false);
+			txtAirline.setText("not found");
+			txtSuffix2.setEnabled(false);
+			txtSuffix2.setText("not found");
+
 			chkPosition.setEnabled(false);
 			txtAirport.setEnabled(false);
 			txtAirport.setText("not found");
@@ -451,7 +531,7 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 			rank=value;
 		}
 		if (tag.equals("prefix")) {
-			prefix=value;
+			suffix=value;
 		}
 		if (tag.equals("tailsign")) {
 			tailsign=value;
@@ -612,11 +692,20 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 		if (ae.getSource()==chkPosition) {
 			config.setJafvaOverwrite(chkPosition.isSelected());
 		}
+		if (ae.getSource()==chkCallsign) {
+			config.setJafvaCallsign(chkCallsign.isSelected());
+		}
 	}
 
 	public void changedUpdate​(DocumentEvent de) {
 		if (de.getDocument()==txtAirport.getDocument()) {
 			config.setAirportJafva(txtAirport.getText());
+		}
+		if (de.getDocument()==txtAirline.getDocument()) {
+			config.setAirlineJafva(txtAirline.getText());
+		}
+		if (de.getDocument()==txtSuffix2.getDocument()) {
+			config.setSuffixJafva(txtSuffix2.getText());
 		}
 		if (de.getDocument()==txtLatitude.getDocument()) {
 			config.setLatitudeJafva(txtLatitude.getText());
@@ -633,6 +722,12 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 		if (de.getDocument()==txtAirport.getDocument()) {
 			config.setAirportJafva(txtAirport.getText());
 		}
+		if (de.getDocument()==txtAirline.getDocument()) {
+			config.setAirlineJafva(txtAirline.getText());
+		}
+		if (de.getDocument()==txtSuffix2.getDocument()) {
+			config.setSuffixJafva(txtSuffix2.getText());
+		}
 		if (de.getDocument()==txtLatitude.getDocument()) {
 			config.setLatitudeJafva(txtLatitude.getText());
 		}
@@ -647,6 +742,12 @@ public class JAFVASelect extends JPanel implements ActionListener, DocumentListe
 	public void removeUpdate​(DocumentEvent de) {
 		if (de.getDocument()==txtAirport.getDocument()) {
 			config.setAirportJafva(txtAirport.getText());
+		}
+		if (de.getDocument()==txtAirline.getDocument()) {
+			config.setAirlineJafva(txtAirline.getText());
+		}
+		if (de.getDocument()==txtSuffix2.getDocument()) {
+			config.setSuffixJafva(txtSuffix2.getText());
 		}
 		if (de.getDocument()==txtLatitude.getDocument()) {
 			config.setLatitudeJafva(txtLatitude.getText());

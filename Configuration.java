@@ -14,6 +14,9 @@ public class Configuration {
 	private AirportEntry airport=null;
 	private boolean isJAFVA=true;
 	private boolean jafvaOverwrite=false;
+	private boolean jafvaCallsign=false;
+	private String airlineJafva="";
+	private String suffixJafva="";
 	private String jafvaName="JWocky";
 	private String airportJafva="";
 	private String latitudeJafva="";
@@ -113,6 +116,30 @@ public class Configuration {
 
 	public boolean getJafvaOverwrite() {
 		return(jafvaOverwrite);
+	}
+
+	public void setJafvaCallsign(boolean b) {
+		jafvaCallsign=b;
+	}
+
+	public boolean getJafvaCallsign() {
+		return(jafvaCallsign);
+	}
+
+	public void setAirlineJafva(String s) {
+		airlineJafva=s;
+	}
+
+	public String getAirlineJafva() {
+		return(airlineJafva);
+	}
+
+	public void setSuffixJafva(String s) {
+		suffixJafva=s;
+	}
+
+	public String getSuffixJafva() {
+		return(suffixJafva);
 	}
 
 	public void setJafvaName(String s) {

@@ -92,6 +92,9 @@ System.out.println("Rename old "+s[3]+" to "+newname);
 				} else {
 					props.add("--airport="+config.getSelectedAirport());
 				}
+				if (config.getJafvaCallsign()) {
+					props.add("--callsign="+config.getAirlineJafva()+config.getSuffixJafva());
+				}
 			} else {
 				props.add("--airport="+config.getSelectedAirport());
 			}
