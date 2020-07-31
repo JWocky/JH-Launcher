@@ -10,6 +10,7 @@ public class StartFlightgear extends JPanel implements ActionListener {
 
 	private JButton btnStart=new JButton("<html>To start Flightgear<br>PRESS THIS GIANT YELLOW BUTTON!</html>");
 	private JTextArea txtMessages=new JTextArea("");
+	private JScrollPane scrMessages=new JScrollPane(txtMessages, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 	private String buffer="";
 
@@ -27,17 +28,17 @@ public class StartFlightgear extends JPanel implements ActionListener {
 		add(btnStart);
 
 		txtMessages.setFont(fntPanel);
-		add(txtMessages);
+		add(scrMessages);
 
 		layout1.putConstraint(SpringLayout.NORTH, btnStart, 20, SpringLayout.NORTH, this); 
 		layout1.putConstraint(SpringLayout.WEST, btnStart, 20, SpringLayout.WEST, this); 
 		layout1.putConstraint(SpringLayout.SOUTH, btnStart, 60, SpringLayout.NORTH, btnStart); 
 		layout1.putConstraint(SpringLayout.EAST, btnStart, -20, SpringLayout.EAST, this); 
 
-		layout1.putConstraint(SpringLayout.NORTH, txtMessages, 10, SpringLayout.SOUTH, btnStart); 
-		layout1.putConstraint(SpringLayout.WEST, txtMessages, 20, SpringLayout.WEST, this); 
-		layout1.putConstraint(SpringLayout.SOUTH, txtMessages, -10, SpringLayout.SOUTH, this); 
-		layout1.putConstraint(SpringLayout.EAST, txtMessages, -20, SpringLayout.EAST, this); 
+		layout1.putConstraint(SpringLayout.NORTH, scrMessages, 10, SpringLayout.SOUTH, btnStart); 
+		layout1.putConstraint(SpringLayout.WEST, scrMessages, 20, SpringLayout.WEST, this); 
+		layout1.putConstraint(SpringLayout.SOUTH, scrMessages, -10, SpringLayout.SOUTH, this); 
+		layout1.putConstraint(SpringLayout.EAST, scrMessages, -20, SpringLayout.EAST, this); 
 	}
 
 	public void actionPerformed(ActionEvent ae) {
