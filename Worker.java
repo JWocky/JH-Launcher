@@ -5,6 +5,11 @@ public class Worker extends Thread {
 
 	private Process process=null;
 	private StartFlightgear surf=null;
+	private Configuration config=null;
+
+	public Worker(Configuration c) {
+		config=c;
+	}
 
 	public void setProcess(Process p) {
 		process=p;
@@ -48,6 +53,8 @@ public class Worker extends Thread {
 					}
 					Thread.yield();
 				}
+				config.setInstancesRunning(config.getInstancesRunning()-1);
+				surf.updateStartButton();
 
 			} catch(IOException ioe) {
 				// really not sure now what to do because I still need to program me a nice window to show the error

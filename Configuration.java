@@ -31,6 +31,7 @@ public class Configuration {
 	private boolean protocolListClean=false;
 	private JAFVASelect jafvaSelect=null;
 	private boolean jafvaListClean=false;
+	private int instancesRunning=0;
 
 	public Configuration(JFrame f) {
 		mainwindow=f;
@@ -251,6 +252,15 @@ public class Configuration {
 
 	public void setJAFVASelect(JAFVASelect js) {
 		jafvaSelect=js;
+	}
+
+	public void setInstancesRunning(int i) {
+		instancesRunning=i;
+	}
+	
+	
+	public int getInstancesRunning() {
+		return(instancesRunning);
 	}
 
 	public void writeConfig() {

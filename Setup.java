@@ -101,7 +101,9 @@ System.out.println("Rename old "+s[3]+" to "+newname);
 			
 			// then start the process with this list
 			Process process = new ProcessBuilder(props).start();
-			Worker worker=new Worker();
+			config.setInstancesRunning(config.getInstancesRunning()+1);
+			surf.updateStartButton();
+			Worker worker=new Worker(config);
 			worker.setProcess(process);
 			worker.setSurf(surf);
 			worker.start();

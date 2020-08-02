@@ -43,11 +43,26 @@ public class StartFlightgear extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource()==btnStart) {
-			if (setup.checkSetup()) {
-				buffer="";
-				txtMessages.setText(buffer);
-				setup.startFG(this);
+			if (config.getInstancesRunning()<1) {
+				if (setup.checkSetup()) {
+					buffer="";
+					txtMessages.setText(buffer);
+					setup.startFG(this);
+				}
 			}
+		}
+	}
+
+
+	public void updateStartButton() {
+		if (config.getInstancesRunning()<1) {
+			btnStart.setFont(fntPanel);
+			btnStart.setBackground(Color.YELLOW);
+			btnStart.setText("<html>To start Flightgear<br>PRESS THIS GIANT YELLOW BUTTON!</html>");
+		} else {
+			btnStart.setFont(fntPanel);
+			btnStart.setBackground(Color.RED);
+			btnStart.setText("<html>Flightgar is already running!</html>");
 		}
 	}
 
