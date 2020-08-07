@@ -7,6 +7,7 @@ public class JHL extends JFrame implements WindowListener, ActionListener {
 	private Configuration config=new Configuration(this);
 	private Setup setup=new Setup(config);
 	private SurfaceLauncher surfaceLauncher=new SurfaceLauncher(config, setup);
+	private SurfaceHangar surfaceHangar=new SurfaceHangar(config, setup);
 	private SurfaceSettings surfaceSettings=new SurfaceSettings(config, setup);
 
 	private Font fntMenu=new Font("Courier", Font.BOLD,20);
@@ -15,8 +16,11 @@ public class JHL extends JFrame implements WindowListener, ActionListener {
 	private JMenuItem itmLauncher=new JMenuItem("Launcher");
 	private JMenuItem itmExit=new JMenuItem("Exit");
 
+	private JMenu mnuHangar=new JMenu("Hangar");
+	private JMenuItem itmHangar=new JMenuItem("Hangar");
+
 	private JMenu mnuSettings=new JMenu("Settings");
-	private JMenuItem itmLauncherSettings=new JMenuItem("Launcher Settings");
+	private JMenuItem itmLauncherSettings=new JMenuItem("Settings");
 
 	private int activeSurface=1;
 	private SpringLayout layout=null;
@@ -45,6 +49,13 @@ public class JHL extends JFrame implements WindowListener, ActionListener {
 		mnuLauncher.add(new JSeparator());
 		mnuLauncher.add(itmExit);
 
+		mnuHangar.setFont(fntMenu);
+
+		itmHangar.setFont(fntMenu);
+		itmHangar.addActionListener(this);
+
+		mnuHangar.add(itmHangar);
+
 		mnuSettings.setFont(fntMenu);
 
 		itmLauncherSettings.setFont(fntMenu);
@@ -54,6 +65,7 @@ public class JHL extends JFrame implements WindowListener, ActionListener {
 
 		JMenuBar bar=new JMenuBar();
 		bar.add(mnuLauncher);
+		bar.add(mnuHangar);
 		bar.add(mnuSettings);
 
 		setJMenuBar(bar);
@@ -94,18 +106,31 @@ public class JHL extends JFrame implements WindowListener, ActionListener {
 				repaint();
 			}
 		}
+		if (ae.getSource()==itmHangar) {
+			if (activeSurface!=2) {
+				getContentPane().removeAll();
+				getContentPane().add(surfaceHangar);
+				layout.putConstraint(SpringLayout.NORTH, surfaceHangar, 1, SpringLayout.NORTH, getContentPane()); 
+				layout.putConstraint(SpringLayout.WEST, surfaceHangar, 1, SpringLayout.WEST, getContentPane()); 
+				layout.putConstraint(SpringLayout.SOUTH, surfaceHangar, -1, SpringLayout.SOUTH, getContentPane()); 
+				layout.putConstraint(SpringLayout.EAST, surfaceHangar, -1, SpringLayout.EAST, getContentPane()); 
+				activeSurface=2;
+				pack();
+				repaint();
+			}
+		}
 		if (ae.getSource()==itmExit) {
 			stopProgram();
 		}
 		if (ae.getSource()==itmLauncherSettings) {
-			if (activeSurface!=2) {
+			if (activeSurface!=3) {
 				getContentPane().removeAll();
 				add(surfaceSettings);
 				layout.putConstraint(SpringLayout.NORTH, surfaceSettings, 1, SpringLayout.NORTH, getContentPane()); 
 				layout.putConstraint(SpringLayout.WEST, surfaceSettings, 1, SpringLayout.WEST, getContentPane()); 
 				layout.putConstraint(SpringLayout.SOUTH, surfaceSettings, -1, SpringLayout.SOUTH, getContentPane()); 
 				layout.putConstraint(SpringLayout.EAST, surfaceSettings, -1, SpringLayout.EAST, getContentPane()); 
-				activeSurface=2;
+				activeSurface=3;
 				pack();
 				repaint();
 			}

@@ -32,6 +32,7 @@ public class Configuration {
 	private JAFVASelect jafvaSelect=null;
 	private boolean jafvaListClean=false;
 	private int instancesRunning=0;
+	private SurfaceHangar surfaceHangar=null;
 
 	public Configuration(JFrame f) {
 		mainwindow=f;
@@ -185,6 +186,7 @@ public class Configuration {
 
 	public void setSelectedAircraft(String ae) {
 		aircraft.setName(ae);
+		surfaceHangar.reload_aircraft(ae);
 	}
 
 	public String getSelectedAircraft() {
@@ -261,6 +263,10 @@ public class Configuration {
 	
 	public int getInstancesRunning() {
 		return(instancesRunning);
+	}
+
+	public void setSurfaceHangar(SurfaceHangar sh) {
+		surfaceHangar=sh;
 	}
 
 	public void writeConfig() {
