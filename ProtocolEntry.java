@@ -1,7 +1,7 @@
 public class ProtocolEntry {
 
 	private String parameters="";
-	private boolean selected=false;
+	private boolean selected=true;
 
 	public void setParameters(String s) {
 		parameters=s;

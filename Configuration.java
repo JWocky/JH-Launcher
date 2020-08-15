@@ -497,7 +497,7 @@ public class Configuration {
 					System.out.println("add Protocol "+line);
 					ProtocolEntry pe=new ProtocolEntry();
 					pe.setParameters(line);
-					pe.setSelected(false);
+					pe.setSelected(true);
 					protocolInterfaces.add(pe);
 				} else {
 					System.out.println("inProtocol: "+line); 
