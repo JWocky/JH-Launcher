@@ -84,6 +84,7 @@ public class SurfaceHangar extends JPanel {
 									buffer.load();
 									if (hangarOverview!=null) {
 										hangarOverview.updateBuffer();
+										hangarOverview.reloadTree();
 									}
 								}
 							}

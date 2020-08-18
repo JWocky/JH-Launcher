@@ -14,7 +14,7 @@ public class PropertyEntry {
 	private int type=TYPE_DEFAULT;
 	private int givenNumber=-1;
 	private String value= null;
-	LinkedList<PropertyEntry> children= new LinkedList<PropertyEntry>();
+	private LinkedList<PropertyEntry> children= new LinkedList<PropertyEntry>();
 
 
 	public PropertyEntry() {
@@ -29,12 +29,20 @@ public class PropertyEntry {
 		name=s;
 	}
 	
+	public String getName() {
+		return(name);
+	}
+	
 	public void setParent(PropertyEntry p) {
 		parent=p;
 	}
 	
 	public PropertyEntry getParent() {
 		return(parent);
+	}
+
+	public LinkedList<PropertyEntry> getChildren() {
+		return(children);
 	}
 
 	public void setType(int i) {
@@ -63,6 +71,10 @@ public class PropertyEntry {
 	
 	public void addChild(PropertyEntry p) {
 		children.add(p);
+	}
+	
+	public String toString() {
+		return(name);
 	}
 	
 	public void showTree(String ind) {

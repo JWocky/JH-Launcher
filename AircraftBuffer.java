@@ -18,6 +18,10 @@ public class AircraftBuffer {
 		return(clear);
 	}
 
+	public PropertyEntry getRootNode() {
+		return(rootnode);
+	}
+
 	public void setName(String s) {
 		name=s;
 	}
@@ -98,16 +102,16 @@ public class AircraftBuffer {
 			}
 		} else if (n.equals("include")) {
 			v=v.substring(1, v.length()-1);
-			System.out.println("------- begin include "+v);
-			System.out.println("        load path:"+path+System.getProperty("file.separator")+v);
+//			System.out.println("------- begin include "+v);
+//			System.out.println("        load path:"+path+System.getProperty("file.separator")+v);
 			String filebuf=readFile(path+System.getProperty("file.separator")+v);
 			PropertyEntry stacked=work;
 			work=pe;
 			parseXML(filebuf);
 			work=stacked;
-			System.out.println("------- end include "+v);
+//			System.out.println("------- end include "+v);
 		} else {
-			System.out.println(n+"-->"+v);
+//			System.out.println(n+"-->"+v);
 		}
 	}
 	
@@ -164,7 +168,7 @@ public class AircraftBuffer {
 		if (pe!=null) {
 			work=pe;
 		}
-		System.out.println("  "+t+"--> "+c);
+//		System.out.println("  "+t+"--> "+c);
 	}
 	
 	private void parseXML(String b) {
@@ -173,7 +177,7 @@ public class AircraftBuffer {
 		String tag="";
 		String content="";
 		int level=0;
-System.out.println("Parsing XML");
+//System.out.println("Parsing XML");
 		for (int i=0; i<b.length(); i++) {
 			String c=b.substring(i, i+1);
 			if (c.equals("<")) {
@@ -236,6 +240,7 @@ System.out.println("Parsing XML");
 		String filebuf=readFile(path+System.getProperty("file.separator")+rootfile);
 		work=rootnode;
 		parseXML(filebuf);
+System.out.println("---------------------- TREE 1 ---------------------------------------------------------------------------");
 		rootnode.showTree("");
 	}
 	
