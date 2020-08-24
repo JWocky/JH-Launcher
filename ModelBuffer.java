@@ -1,13 +1,13 @@
 import java.io.*;
 
-public class AircraftBuffer {
+public class ModelBuffer {
 
 	private boolean clear=true;
 	private String name="";
 	private String path="";
 	private String rootfile="";
 	
-	private PropertyEntry rootnode=new PropertyEntry("rootnode", null);
+	private PropertyEntry rootnode=new PropertyEntry("model", null);
 	private PropertyEntry work=null;
 	
 	public void clear() {
@@ -44,28 +44,6 @@ public class AircraftBuffer {
 	
 	public String getRootFile() {
 		return(rootfile);
-	}
-
-	public ModelBuffer getMainModel() {
-		ModelBuffer m=new ModelBuffer();
-		for (int i=0; i<rootnode.getChildren().size(); i++) {
-			PropertyEntry pe1=rootnode.getChildren().get(i);
-			if (pe1.getName().equals("sim")) {
-				for (int j=0; j<pe1.getChildren().size(); j++) {
-					PropertyEntry pe2=pe1.getChildren().get(j);
-					if (pe2.getName().equals("model")) {
-						for(int k=0; k<pe2.getChildren().size(); k++) {
-							PropertyEntry pe3=pe2.getChildren().get(k);
-							if (pe3.getName().equals("path")) {
-System.out.println("main model path="+pe3.getValue());
-							}
-						}
-				
-					}
-				}
-			}
-		}
-		return(m);
 	}
 
 	private String readFile(String fn) {
@@ -262,7 +240,7 @@ System.out.println("main model path="+pe3.getValue());
 		String filebuf=readFile(path+System.getProperty("file.separator")+rootfile);
 		work=rootnode;
 		parseXML(filebuf);
-System.out.println("---------------------- TREE 1 ---------------------------------------------------------------------------");
+System.out.println("---------------------- TREE 2 ---------------------------------------------------------------------------");
 		rootnode.showTree("");
 	}
 	

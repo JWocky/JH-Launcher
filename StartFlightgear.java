@@ -17,6 +17,8 @@ public class StartFlightgear extends JPanel implements ActionListener {
 	private JButton btnFile=new JButton("<html>Print output to file</html>");
 
 	private String buffer="";
+	
+	private int linesAdded=0;
 
 	public StartFlightgear(Configuration c, Setup s) {
 		config=c;
@@ -61,6 +63,14 @@ public class StartFlightgear extends JPanel implements ActionListener {
 				if (setup.checkSetup()) {
 					buffer="";
 					txtMessages.setText(buffer);
+					try {
+						File file = new File("FG.log");
+						file.createNewFile();
+						System.out.println("File: " + file + "created");
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+					linesAdded=0;
 					setup.startFG(this);
 				}
 			}
@@ -74,16 +84,16 @@ public class StartFlightgear extends JPanel implements ActionListener {
 				File selectedFile = jfc.getSelectedFile();
 				System.out.println(selectedFile.getAbsolutePath());
 				try {
-					BufferedWriter out=new BufferedWriter(new FileWriter(selectedFile.getAbsolutePath()));
-					out.write(txtMessages.getText()); out.newLine();
-					out.close();
-				} catch (IOException ioe) {
-					System.out.println("Error: "+ioe.getMessage());
+					new File("FG.log").renameTo(selectedFile);
+//					BufferedWriter out=new BufferedWriter(new FileWriter(selectedFile.getAbsolutePath()));
+//					out.write(txtMessages.getText()); out.newLine();
+//					out.close();
+				} catch (Exception e) {
+					System.out.println("Error: "+e.getMessage());
 				}
 			}
 		}
 	}
-
 
 	public void updateStartButton() {
 		if (config.getInstancesRunning()<1) {
@@ -102,7 +112,34 @@ public class StartFlightgear extends JPanel implements ActionListener {
 			buffer=buffer+"\n";
 		}
 		buffer=buffer+l;
+		linesAdded=linesAdded+1;
 		txtMessages.setText(buffer);
+		if (linesAdded>100) {
+			try {
+				BufferedWriter out=new BufferedWriter(new FileWriter("FG.log", true));
+				out.write(buffer); out.newLine();
+				out.close();
+			} catch (IOException ioe) {
+				System.out.println("Error: "+ioe.getMessage());
+			}
+			buffer=l;
+			linesAdded=1;
+			txtMessages.setText(buffer);
+		} else {
+			buffer=buffer+l;
+			linesAdded=linesAdded+1;
+			txtMessages.setText(buffer);
+		}
+	}
+
+	public void endProcess() {
+		try {
+			BufferedWriter out=new BufferedWriter(new FileWriter("FG.log", true));
+			out.write(buffer); out.newLine();
+			out.close();
+		} catch (IOException ioe) {
+			System.out.println("Error: "+ioe.getMessage());
+		}
 	}
 
 }

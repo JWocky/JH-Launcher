@@ -12,11 +12,12 @@ public class SurfaceHangar extends JPanel {
 	private JFrame win=null;
 	
 	private AircraftBuffer buffer=new AircraftBuffer();
+	private ModelBuffer model=new ModelBuffer();
 
 	private Font fntTabbed=new Font("Courier", Font.PLAIN,20);
 
 	private HangarOverview hangarOverview=null;
-//	private AirportSelect airportSelect=null;
+	private HangarModel hangarModel=null;
 //	private ProtocolSelect protocolSelect=null;
 //	private JAFVASelect jafvaSelect=null;
 //	private StartFlightgear startFlightgear=null;
@@ -30,7 +31,7 @@ public class SurfaceHangar extends JPanel {
 		win=config.getMainWindow();
 
 		hangarOverview=new HangarOverview(config, buffer);
-//		airportSelect=new AirportSelect(config);
+		hangarModel=new HangarModel(config, model);
 //		protocolSelect=new ProtocolSelect(config);
 //		jafvaSelect=new JAFVASelect(config);
 //		startFlightgear=new StartFlightgear(config, setup);
@@ -49,7 +50,7 @@ public class SurfaceHangar extends JPanel {
 		layout1.putConstraint(SpringLayout.EAST, tabbed, -1, SpringLayout.EAST, this); 
 
 		tabbed.addTab("Overview", hangarOverview);
-//		tabbed.addTab("Select Airport", airportSelect);
+		tabbed.addTab("Model", hangarModel);
 //		tabbed.addTab("Protocols", protocolSelect);
 //		tabbed.addTab("JAFVA", jafvaSelect);
 //		tabbed.addTab("Start FlightGear", startFlightgear);
@@ -85,6 +86,7 @@ public class SurfaceHangar extends JPanel {
 									if (hangarOverview!=null) {
 										hangarOverview.updateBuffer();
 										hangarOverview.reloadTree();
+										model=buffer.getMainModel();
 									}
 								}
 							}

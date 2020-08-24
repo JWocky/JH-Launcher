@@ -53,6 +53,7 @@ public class Worker extends Thread {
 					}
 					Thread.yield();
 				}
+				surf.endProcess();
 				config.setInstancesRunning(config.getInstancesRunning()-1);
 				surf.updateStartButton();
 
