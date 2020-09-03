@@ -13,6 +13,7 @@ public class SurfaceSettings extends JPanel{
 	private TerrainDirectorySelect terrainDirectorySelect=null;
 	private DefaultProtocolSelect defaultProtocolSelect=null;
 	private DefaultJAFVASelect defaultJAFVASelect=null;
+	private DefaultMPSelect defaultMPSelect=null;
 
 	private JTabbedPane tabbed=new JTabbedPane(JTabbedPane.LEFT);
 
@@ -26,6 +27,7 @@ public class SurfaceSettings extends JPanel{
 		terrainDirectorySelect=new TerrainDirectorySelect(config);
 		defaultProtocolSelect=new DefaultProtocolSelect(config);
 		defaultJAFVASelect=new DefaultJAFVASelect(config);
+		defaultMPSelect=new DefaultMPSelect(config);
 
 		SpringLayout layout1=new SpringLayout();
 		setLayout(layout1);
@@ -42,6 +44,7 @@ public class SurfaceSettings extends JPanel{
 		tabbed.addTab("Terrain Directories", terrainDirectorySelect);
 		tabbed.addTab("Default Protocols", defaultProtocolSelect);
 		tabbed.addTab("JAFVA", defaultJAFVASelect);
+		tabbed.addTab("Multiplayer", defaultMPSelect);
 	}
 
 	public void activate() {

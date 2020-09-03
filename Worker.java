@@ -51,7 +51,13 @@ public class Worker extends Thread {
 						System.out.println("Error: "+line);
 						surf.addLine(line);
 					}
-					Thread.yield();
+					try { 
+                       				// thread to sleep for 1000 milliseconds 
+						Thread.sleep(1000); 
+            				} catch (Exception e) { 
+	         				//System.out.println(e); 
+	         			}
+ //					Thread.yield();
 				}
 				surf.endProcess();
 				config.setInstancesRunning(config.getInstancesRunning()-1);

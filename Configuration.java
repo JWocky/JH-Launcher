@@ -8,10 +8,14 @@ public class Configuration {
 	private DirectoryEntry rootDirectory=null;
 	private LinkedList<DirectoryEntry> aircraftDirectories=new LinkedList<DirectoryEntry>();
 	private LinkedList<DirectoryEntry> terrainDirectories=new LinkedList<DirectoryEntry>();
-	private boolean aiTraffic=false;
 	private LinkedList<ProtocolEntry> protocolInterfaces=new LinkedList<ProtocolEntry>();
+	private LinkedList<ServerEntry> servers=new LinkedList<ServerEntry>();
 	private AircraftEntry aircraft=null;
 	private AirportEntry airport=null;
+
+	private boolean aiTraffic=false;
+	private boolean goMP=false;
+
 	private boolean isJAFVA=true;
 	private boolean jafvaOverwrite=false;
 	private boolean jafvaCallsign=false;
@@ -36,35 +40,10 @@ public class Configuration {
 
 	public Configuration(JFrame f) {
 		mainwindow=f;
-		// just some data for test purposes till I figure out where and how I want to store a configuration permanently
-		rootDirectory=new DirectoryEntry();
-		rootDirectory.setPath("/home/peter/fgdata/fgdata");
-
-		DirectoryEntry dir=new DirectoryEntry();
-		dir.setPath("/home/peter/fgdata/JWocky_Hangar/Aircraft");
-		aircraftDirectories.add(dir);
-		dir=new DirectoryEntry();
-		dir.setPath("/home/peter/fgdata/fgdata/Aircraft");
-		aircraftDirectories.add(dir);
-
-		dir=new DirectoryEntry();
-		dir.setPath("/home/peter/fgdata/fgdata/Blah");
-		aircraftDirectories.add(dir);
-
-		dir=new DirectoryEntry();
-		dir.setPath("/home/peter/fgdata/terraGit");
-		terrainDirectories.add(dir);
-		aiTraffic=false;
-		ProtocolEntry proto=new ProtocolEntry();
-		proto.setParameters("file,out,0.17,JAFVA/blackbox.csv,blackbox");
-		protocolInterfaces.add(proto);
 		aircraft=new AircraftEntry();
-		aircraft.setName("JH-767-300ER");
-		aircraft.setDirectory(aircraftDirectories.get(0));
 		airport=new AirportEntry();
-		airport.setICAOCode("KBLV");
-		airport.setName("Midamerica Whatever");
-		airport.setDirectory(terrainDirectories.get(0));
+		aiTraffic=false;
+		goMP=false;
 		readConfig();
 	}
 
@@ -78,6 +57,11 @@ public class Configuration {
 
 	public void setRoot(DirectoryEntry de) {
 		rootDirectory=de;
+	}
+
+
+	public LinkedList<ServerEntry> getServers() {
+		return(servers);
 	}
 
 	public LinkedList<DirectoryEntry> getAircraftDirectories() {
@@ -102,6 +86,22 @@ public class Configuration {
 
 	public void setProtocols(LinkedList<ProtocolEntry> l) {
 		protocolInterfaces=l;
+	}
+
+	public void setGoMP(boolean b) {
+		goMP=b;
+	}
+
+	public boolean getGoMP() {
+		return(goMP);
+	}
+
+	public void setAITraffic(boolean b) {
+		aiTraffic=b;
+	}
+
+	public boolean getAITraffic() {
+		return(aiTraffic);
 	}
 
 	public void setJafva(boolean b) {
